@@ -1,0 +1,85 @@
+﻿{
+  "name":"Test Game",
+  "Author":"TextEngine Devs",
+  "version":"1.0.0",
+  "MultiplayerEnabled":false,
+  "MaxPlayers":2,
+  "ShouldShowChoicesDialoguePhrase": true,
+  "ShouldShowNumberOfChoices": true,
+  "StartingPOI":"TestPOI",
+  "POI":[
+    {
+      "name":"TestPOI",
+    }
+  ]
+}
+--SECTION--
+[
+  {
+    "id":"start",
+    "text":"Main Menu",
+    "choices":[
+      {
+        "text":"Start Game",
+        "redirect":"StartGame",
+        "RandomEventPool":"TestEventPool"
+      },
+      {
+        "text":"Close Game",
+        "redirect":"__exit__",
+        "RandomEventPool":""
+      }
+    ]
+  },
+    {
+        "id":"StartGame",
+        "text":"Welcome to this cool game!",
+        "choices":[
+        {
+            "text":"Choose me please!",
+            "redirect":"__exit__",
+            "RandomEventPool":""
+        }
+        ]
+    },
+  {
+    "id":"TestEventPrompt",
+    "text":"Welcome to the test event!",
+    "choices":[
+      {
+        "text":"Choose me please!",
+        "redirect":"TestEventPrompt2",
+        "RandomEventPool":""
+      }
+    ]
+  },
+  {
+    "id":"TestEventPrompt2",
+    "text":"Welcome to the test event number 2!",
+    "choices":[
+      {
+        "text":"Finish Event with __finish__flag__",
+        "redirect":"__finish__flag__",
+        "RandomEventPool":""
+      }
+    ]
+  }
+]
+--SECTION--
+[
+  {
+    "event_pool_id":"TestEventPool",
+    "events":[
+      {
+        "id":"event1",
+        "prompt_id":"TestEventPrompt",
+        "chance":100
+      },
+      {
+        "id": "event2",
+        "prompt_id":"TestEventPrompt2",
+        "chance": 1
+      }
+    ]
+  }
+]
